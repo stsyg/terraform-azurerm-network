@@ -23,7 +23,7 @@ resource "azurerm_virtual_network" "infravnet" {
   address_space       = [var.virtual_network.address_space]
 
   dynamic "subnet" {
-    for_each = [for s in subnets : {
+    for_each = [for s in var.subnets : {
       name   = s.name
       prefix = cidrsubnet(var.virtual_network.address_space, 4, s.number)
     }]
