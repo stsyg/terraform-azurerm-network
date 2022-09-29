@@ -18,3 +18,18 @@ default_tags = {
   designation = "Infrastructure"
   provisioner = "Terraform"
 }
+
+subnets = {
+    {
+      name   = "infra-lab-front"
+      number = 1
+    },
+    {
+      name   = "infra-lab-back"
+      number = 2
+    },
+    {
+      name   = "infra-lab-k8s"
+      number = 3
+    },
+}

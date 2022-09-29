@@ -22,3 +22,8 @@ variable "virtual_network" {
   type        = map(string)
   description = "Name of vNet/Subnet resources"
 }
+
+variable "subnets" {
+  type        = map(list)
+  description = "List of subnets"
+}
