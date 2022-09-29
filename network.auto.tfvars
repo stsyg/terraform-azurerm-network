@@ -9,6 +9,8 @@ virtual_network = {
   address_prefix1 = "192.168.0.0/24"
   name_subnet2    = "infra-lab-back"
   address_prefix2 = "192.168.1.0/24"
+  name_subnet3    = "infra-lab-k8s"
+  address_prefix3 = "192.168.2.0/24"
 }
 
 default_tags = {

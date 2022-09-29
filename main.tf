@@ -34,5 +34,11 @@ resource "azurerm_virtual_network" "infravnet" {
     security_group = azurerm_network_security_group.infransg.id
   }
 
+  subnet {
+    name           = var.virtual_network.name_subnet3
+    address_prefix = var.virtual_network.address_prefix3
+    security_group = azurerm_network_security_group.infransg.id
+  }
+
   tags = var.default_tags
 }
