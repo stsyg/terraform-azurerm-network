@@ -41,4 +41,13 @@ resource "azurerm_virtual_network" "infravnet" {
   }
 
   tags = var.default_tags
+
+  lifecycle {
+    # Set this to true to prevent any kind of deletion/state taint operation via Terraform.
+    prevent_destroy = false
+    # List of properties to be ignore by Terraform when it does a state refresh and plans changes to azure
+    ignore_changes = [
+      subnet
+    ]
+  }
 }
