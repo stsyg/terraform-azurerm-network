@@ -1,7 +1,7 @@
 # Create resource group
 resource "azurerm_resource_group" "infrarg" {
-  name     = var.deploy_location
-  location = var.rg_name
+  name     = var.rg_name
+  location = var.deploy_location
 
   tags = var.default_tags
 }
