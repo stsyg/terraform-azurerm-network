@@ -1,4 +1,4 @@
-﻿variable "deploy_location" {
+variable "deploy_location" {
   type        = string
   description = "The Azure Region in which all resources will be created"
 }
@@ -14,11 +14,11 @@ variable "network_security_group" {
 }
 
 variable "default_tags" {
-  type = map (string)
+  type        = map(string)
   description = "Default tags to add to deployed resources"
 }
 
 variable "virtual_network" {
-  type = map (string)
+  type        = map(string)
   description = "Name of vNet/Subnet resources"
 }

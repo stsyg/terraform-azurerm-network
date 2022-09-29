@@ -1,4 +1,4 @@
-﻿# Terraform Cloud configuration
+# Terraform Cloud configuration
 terraform {
   backend "remote" {
     organization = "The38Dev"
