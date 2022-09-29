@@ -24,13 +24,13 @@ resource "azurerm_virtual_network" "infravnet" {
 
   subnet {
     name           = var.virtual_network.name_subnet1
-    address_prefix = [var.virtual_network.address_prefix1]
+    address_prefix = var.virtual_network.address_prefix1
     security_group = azurerm_network_security_group.infransg.id
   }
 
   subnet {
     name           = var.virtual_network.name_subnet2
-    address_prefix = [var.virtual_network.address_prefix2]
+    address_prefix = var.virtual_network.address_prefix2
     security_group = azurerm_network_security_group.infransg.id
   }
 
