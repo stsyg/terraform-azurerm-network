@@ -1,6 +1,14 @@
-# Create resource group
+# Create Network Infrastructure resource group
 resource "azurerm_resource_group" "infrarg" {
   name     = var.rg_name
+  location = var.deploy_location
+
+  tags = var.default_tags
+}
+
+# Create Bastion resource group
+resource "azurerm_resource_group" "bastionrg" {
+  name     = var.bastion_rg_name
   location = var.deploy_location
 
   tags = var.default_tags
@@ -22,18 +30,35 @@ resource "azurerm_virtual_network" "infravnet" {
   resource_group_name = azurerm_resource_group.infrarg.name
   address_space       = [var.virtual_network.address_space]
 
-  dynamic "subnet" {
-    for_each = [for s in var.subnets : {
-      name   = s.name
-      prefix = cidrsubnet(var.virtual_network.address_space, 4, s.number)
-    }]
-
-    content {
-      name           = subnet.value.name
-      address_prefix = subnet.value.prefix
-    }
+  resource "azurerm_subnet" "infrasubnet" {
+    for_each             = var.subnets
+    resource_group_name  = var.rg_name
+    virtual_network_name = azurerm_virtual_network.infravnet.name
+    name                 = each.value["name"]
+    address_prefixes     = each.value["address_prefixes"]
   }
 
+  resource "azurerm_public_ip" "infrabastionpip" {
+    name                = "${var.bastionhost_name}PubIP"
+    location            = azurerm_resource_group.infravnet.location
+    resource_group_name = azurerm_resource_group.bastionrg.name
+    allocation_method   = "Static"
+    sku                 = "Standard"
+    tags                = var.default_tags
+  }
+
+  resource "azurerm_bastion_host" "bastion" {
+    name                = var.bastionhost_name
+    location            = azurerm_resource_group.infravnet.location
+    resource_group_name = azurerm_resource_group.bastionrg.name
+    tags                = var.default_tags
+
+    ip_configuration {
+      name                 = var.ip_configuration_name
+      subnet_id            = azurerm_subnet.infrasubnet.id
+      public_ip_address_id = azurerm_public_ip.infrabastionpip.id
+    }
+  }
   #   subnet {
   #     name           = var.virtual_network.name_subnet1
   #     address_prefix = var.virtual_network.address_prefix1

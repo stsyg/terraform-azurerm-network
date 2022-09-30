@@ -8,6 +8,11 @@ variable "rg_name" {
   description = "Name of the Resource group"
 }
 
+variable "bastion_rg_name" {
+  type        = string
+  description = "Name of the Bastion Resource group"
+}
+
 variable "network_security_group" {
   type        = string
   description = "Name of the NSG"
@@ -26,4 +31,19 @@ variable "virtual_network" {
 variable "subnets" {
   type        = map(any)
   description = "List of subnets"
+}
+
+variable "bastion_pip_name" {
+  type        = string
+  description = "Azure Bastion Public IP name"
+}
+
+variable "bastion_host_name" {
+  type        = string
+  description = "Azure Bastion Host name"
+}
+
+variable "ip_configuration_name" {
+  type        = string
+  description = "Azure Bastion IP configuration name"
 }

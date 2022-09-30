@@ -1,6 +1,10 @@
 deploy_location        = "canadacentral"
 rg_name                = "infra-network-rg"
+bastion_rg_name        = "infra-bastion-rg"
 network_security_group = "infra-network-nsg"
+ip_configuration_name  = "bastion_configuration"
+bastion_pip_name       = "infra-bastion-pip1"
+bastion_host_name      = "infra-bastion"
 
 virtual_network = {
   name_vnet       = "infra-vnet-01"
@@ -20,16 +24,25 @@ default_tags = {
 }
 
 subnets = [
+
   {
-    name   = "infra-lab-front"
-    number = 1
+    name             = "infra-lab-front"
+    address_prefixes = ["192.168.0.0/24"]
   },
+
   {
-    name   = "infra-lab-back"
-    number = 2
+    name             = "infra-lab-back"
+    address_prefixes = ["192.168.1.0/24"]
   },
+
   {
-    name   = "infra-lab-k8s"
-    number = 3
+    name             = "infra-lab-k8s"
+    address_prefixes = ["192.168.2.0/24"]
   },
+
+  # The name must be AzureBastionSubnet
+  {
+    name             = "AzureBastionSubnet"
+    address_prefixes = ["192.168.255.224/27"]
+  }
 ]
