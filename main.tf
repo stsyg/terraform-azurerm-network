@@ -40,7 +40,7 @@ resource "azurerm_subnet" "infrasubnet" {
 }
 
 resource "azurerm_public_ip" "infrabastionpip" {
-  name                = "${var.bastionhost_name}PubIP"
+  name                = "${var.bastion_host_name}PubIP"
   location            = azurerm_resource_group.bastionrg.location
   resource_group_name = azurerm_resource_group.bastionrg.name
   allocation_method   = "Static"
@@ -49,7 +49,7 @@ resource "azurerm_public_ip" "infrabastionpip" {
 }
 
 resource "azurerm_bastion_host" "bastion" {
-  name                = var.bastionhost_name
+  name                = var.bastion_host_name
   location            = azurerm_resource_group.bastionrg.location
   resource_group_name = azurerm_resource_group.bastionrg.name
   tags                = var.default_tags
