@@ -31,6 +31,25 @@ variable "virtual_network" {
 variable "subnets" {
   type        = map(any)
   description = "List of subnets"
+  default = {
+    subnet_1 = {
+      name             = "infra-lab-front"
+      address_prefixes = ["192.168.0.0/24"]
+    },
+    subnet_2 = {
+      name             = "infra-lab-back"
+      address_prefixes = ["192.168.1.0/24"]
+    },
+    subnet_3 = {
+      name             = "infra-lab-k8s"
+      address_prefixes = ["192.168.2.0/24"]
+    },
+    # The name must be AzureBastionSubnet
+    bastion_subnet = {
+      name             = "AzureBastionSubnet"
+      address_prefixes = ["192.168.255.224/27"]
+    }
+  }
 }
 
 variable "bastion_pip_name" {
