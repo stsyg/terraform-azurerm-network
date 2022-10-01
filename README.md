@@ -6,3 +6,4 @@ The following resources will be created:
 - Azure Subnets
   - Azure Bastion Subnet
 - Azure Bastion
+- NSG
