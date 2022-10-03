@@ -44,6 +44,11 @@ variable "subnets" {
       name             = "infra-lab-k8s"
       address_prefixes = ["192.168.2.0/24"]
     },
+    # Gateway Subnet for S2S VPN
+    subnet_4 = {
+      name             = "GatewaySubnet"
+      address_prefixes = ["192.168.255.192/27"]
+    },
     # The name must be AzureBastionSubnet
     bastion_subnet = {
       name             = "AzureBastionSubnet"
