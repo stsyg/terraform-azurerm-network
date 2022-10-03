@@ -6,16 +6,16 @@ ip_configuration_name  = "bastion-configuration"
 bastion_pip_name       = "infra-bastion-pip1"
 bastion_host_name      = "infra-bastion"
 
-# virtual_network = {
-#   name_vnet       = "infra-vnet-01"
-#   address_space   = "192.168.0.0/16"
-#   name_subnet1    = "infra-lab-front"
-#   address_prefix1 = "192.168.0.0/24"
-#   name_subnet2    = "infra-lab-back"
-#   address_prefix2 = "192.168.1.0/24"
-#   name_subnet3    = "infra-lab-k8s"
-#   address_prefix3 = "192.168.2.0/24"
-# }
+virtual_network = {
+  name_vnet     = "infra-vnet-01"
+  address_space = "192.168.0.0/16"
+  # name_subnet1    = "infra-lab-front"
+  # address_prefix1 = "192.168.0.0/24"
+  # name_subnet2    = "infra-lab-back"
+  # address_prefix2 = "192.168.1.0/24"
+  # name_subnet3    = "infra-lab-k8s"
+  # address_prefix3 = "192.168.2.0/24"
+}
 
 default_tags = {
   environment = "Lab"
