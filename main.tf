@@ -37,6 +37,7 @@ resource "azurerm_subnet" "infrasubnet" {
   virtual_network_name = azurerm_virtual_network.infravnet.name
   name                 = each.value["name"]
   address_prefixes     = each.value["address_prefixes"]
+  service_endpoints    = ["Microsoft.AzureActiveDirectory", "Microsoft.ContainerRegistry", "Microsoft.KeyVault", "Microsoft.Sql", "Microsoft.Storage", "Microsoft.Web"]
 }
 
 resource "azurerm_public_ip" "infrabastionpip" {
@@ -61,30 +62,3 @@ resource "azurerm_bastion_host" "bastion" {
   }
 
 }
-#   subnet {
-#     name           = var.virtual_network.name_subnet1
-#     address_prefix = var.virtual_network.address_prefix1
-#     security_group = azurerm_network_security_group.infransg.id
-#   }
-
-#   subnet {
-#     name           = var.virtual_network.name_subnet2
-#     address_prefix = var.virtual_network.address_prefix2
-#     security_group = azurerm_network_security_group.infransg.id
-#   }
-
-#   subnet {
-#     name           = var.virtual_network.name_subnet3
-#     address_prefix = var.virtual_network.address_prefix3
-#     security_group = azurerm_network_security_group.infransg.id
-#   }
-
-#   lifecycle {
-#     # Set this to true to prevent any kind of deletion/state taint operation via Terraform.
-#     prevent_destroy = false
-#     # List of properties to be ignore by Terraform when it does a state refresh and plans changes to Azure
-#     ignore_changes = [
-#       subnet
-#     ]
-#   }
-#}
