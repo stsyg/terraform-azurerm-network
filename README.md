@@ -42,7 +42,6 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_bastion_host_name"></a> [bastion\_host\_name](#input\_bastion\_host\_name) | Azure Bastion Host name | `string` | n/a | yes |
-| <a name="input_bastion_pip_name"></a> [bastion\_pip\_name](#input\_bastion\_pip\_name) | Azure Bastion Public IP name | `string` | n/a | yes |
 | <a name="input_bastion_rg_name"></a> [bastion\_rg\_name](#input\_bastion\_rg\_name) | Name of the Bastion Resource group | `string` | n/a | yes |
 | <a name="input_default_tags"></a> [default\_tags](#input\_default\_tags) | Default tags to add to deployed resources | `map(string)` | n/a | yes |
 | <a name="input_deploy_location"></a> [deploy\_location](#input\_deploy\_location) | The Azure Region in which all resources will be created | `string` | n/a | yes |

@@ -57,12 +57,6 @@ variable "subnets" {
   }
 }
 
-# tflint-ignore: terraform_unused_declarations
-variable "bastion_pip_name" {
-  type        = string
-  description = "Azure Bastion Public IP name"
-}
-
 variable "bastion_host_name" {
   type        = string
   description = "Azure Bastion Host name"
