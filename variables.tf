@@ -57,6 +57,7 @@ variable "subnets" {
   }
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "bastion_pip_name" {
   type        = string
   description = "Azure Bastion Public IP name"
