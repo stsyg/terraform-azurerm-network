@@ -23,7 +23,7 @@ resource "azurerm_network_security_group" "infransg" {
   tags = var.default_tags
 }
 
-# Create vNet and Subnets
+# Create vNet
 resource "azurerm_virtual_network" "infravnet" {
   name                = var.virtual_network.name_vnet
   location            = azurerm_resource_group.infrarg.location
@@ -31,6 +31,7 @@ resource "azurerm_virtual_network" "infravnet" {
   address_space       = [var.virtual_network.address_space]
 }
 
+# Create Subnets
 resource "azurerm_subnet" "infrasubnet" {
   for_each             = var.subnets
   resource_group_name  = var.rg_name
@@ -40,6 +41,7 @@ resource "azurerm_subnet" "infrasubnet" {
   service_endpoints    = ["Microsoft.AzureActiveDirectory", "Microsoft.ContainerRegistry", "Microsoft.KeyVault", "Microsoft.Sql", "Microsoft.Storage", "Microsoft.Web"]
 }
 
+# Create Public IP
 resource "azurerm_public_ip" "infrabastionpip" {
   name                = "${var.bastion_host_name}PubIP"
   location            = azurerm_resource_group.bastionrg.location
@@ -49,6 +51,7 @@ resource "azurerm_public_ip" "infrabastionpip" {
   tags                = var.default_tags
 }
 
+# Create Bastion Host
 resource "azurerm_bastion_host" "bastion" {
   name                = var.bastion_host_name
   location            = azurerm_resource_group.bastionrg.location

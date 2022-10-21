@@ -8,6 +8,13 @@ terraform {
       source = "hashicorp/azuread"
     }
   }
+  backend "azurerm" {
+    resource_group_name  = "infra-storage-rg"
+    storage_account_name = "infrastoraged103"
+    container_name       = "infrastoragetfstate"
+    key                  = "lab.infranetwork.tfstate"
+  }
+  required_version = ">= 1.3.2"
 }
 
 provider "azurerm" {
